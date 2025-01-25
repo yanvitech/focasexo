@@ -1,0 +1,101 @@
+FONCTIONS_UTILISEES
+FONCTION affchoix1()
+VARIABLES_FONCTION
+	DEBUT_FONCTION
+	    AFFICHER* "1-afficher les livre"
+		 AFFICHER* "2-emprunter un livre" 
+      AFFICHER* "3-rendre un livre"
+ FIN_FONCTION     
+FONCTION affchoix(n)
+VARIABLES_FONCTION
+	DEBUT_FONCTION
+	SI (n==1) ALORS
+		DEBUT_SI
+		 AFFICHER* "2-emprunter un livre" 
+      AFFICHER* "3-rendre un livre"
+		FIN_SI
+	SI (n==2) ALORS
+		DEBUT_SI
+		  AFFICHER* "1-afficher les livre"
+      AFFICHER* "3-rendre un livre"
+		FIN_SI	
+		SI (n==3) ALORS
+		DEBUT_SI
+		  AFFICHER* "1-afficher les livre"
+      AFFICHER* "2-emprunter un livre"
+		FIN_SI	
+	FIN_FONCTION
+FONCTION afflivre()
+VARIABLES_FONCTION
+	DEBUT_FONCTION
+	 AFFICHER* "livre1 emprunter"
+	 AFFICHER* "livre2 disponible"
+	 AFFICHER* "livre3 emprunter"
+	 AFFICHER* "livre4 disponible"
+	 AFFICHER* "livre5 emprunter"
+	FIN_FONCTION
+VARIABLES
+tab EST_DU_TYPE LISTE
+n EST_DU_TYPE NOMBRE
+l EST_DU_TYPE NOMBRE
+i EST_DU_TYPE NOMBRE
+choix EST_DU_TYPE CHAINE
+DEBUT_ALGORITHME
+choix PREND_LA_VALEUR "Nos livres"
+tab[0] PREND_LA_VALEUR 1:2:3:4:5:
+ APPELER_FONCTION affchoix1()
+ LIRE n
+TANT_QUE (n>3) FAIRE
+	DEBUT_TANT_QUE
+AFFICHER "cette option fait pas partie des options proposer"
+PAUSE
+FIN_TANT_QUE
+
+SI (n==1) ALORS
+	DEBUT_SI
+	AFFICHER* choix
+  APPELER_FONCTION afflivre()
+  AFFICHER* "Autres options possible"
+  APPELER_FONCTION affchoix(n)
+ LIRE n
+	FIN_SI
+	SI (n==2) ALORS
+			DEBUT_SI
+			  
+			APPELER_FONCTION afflivre()
+			AFFICHER* "Entrer le numero du livre a emprunter"
+			LIRE l
+			TANT_QUE (l==tab[0] OU l==tab[2] OU l==tab[4]) FAIRE
+				DEBUT_TANT_QUE
+				 SI (l==tab[0] OU l==tab[2] OU l==tab[4] ) ALORS
+			 	DEBUT_SI
+			 	AFFICHER* "Livre deja emprunter"
+			 	AFFICHER* "Autre livre a emprunter??"
+			 	LIRE l
+			 	FIN_SI
+				FIN_TANT_QUE
+				AFFICHER* "Livre emprunter avec succes"
+      FIN_SI
+      AFFICHER* "Autres options possible"
+      APPELER_FONCTION affchoix(n)
+ LIRE n
+      SI (n==3) ALORS
+			DEBUT_SI
+			AFFICHER* "mettez le numero du livre a rendre"
+			APPELER_FONCTION afflivre()
+			LIRE l
+			TANT_QUE (l==tab[0] OU l==tab[2] OU l==tab[4]) FAIRE
+				DEBUT_TANT_QUE
+				 SI (l==tab[0] OU l==tab[2] OU l==tab[4] ) ALORS
+			 	DEBUT_SI
+			 	 AFFICHER* "Livre  rendue avec success"
+			 	 AFFICHER* "Autre livre a rendre??"
+			 	LIRE l
+			 	FIN_Si	 
+				FIN_TANT_QUE
+				AFFICHER* "vous avez pas emprunter ce livre"
+				
+				
+			
+    FIN_SI	
+FIN_ALGORITHME 
